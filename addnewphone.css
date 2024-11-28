@@ -1,0 +1,45 @@
+.box-large-page2 {
+    width: 100%;
+
+    margin-top: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+  }
+
+.box-medium-page2{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    height: 45px;
+  }
+  .input-text{
+    width: 12%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+  .input-box{
+    width: 86%;
+    display: flex;
+    align-items: center;
+    background-color: #dceaf7;
+    border: 0px;
+    height: 45px;
+    border-radius: 5px;
+
+  }
+  .section-save{
+    width: 100px;
+    height: 50px;
+    border: 3px solid #000000;
+    background-color: #156082;
+    color: white;
+    font-size: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+  }
