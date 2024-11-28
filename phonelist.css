@@ -92,8 +92,8 @@ a:first-of-type{
   
   .box-large {
     width: 100%;
-    height: 300px;
-    margin-top: 15px;
+    height: 255px;
+    margin-top: 25px;
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
@@ -144,6 +144,9 @@ a:first-of-type{
     align-items: center;
     background-color: #dceaf7;
   }
+  .phoneList:hover{
+    background-color: #cddbe7;
+  }
   .listRight{
     display: flex;
     justify-content: space-between;
@@ -175,13 +178,14 @@ a:first-of-type{
 }
 button{
   color: #9e276e;
-  border-radius: 3px;
+  border-radius: 8px;
   border-color: #9e276e;
   background-color: #f2cfee;
   width: 60px;
   height: 30px;
   margin-right: 10px;
   cursor: pointer;
+
 }
 button:hover{
   background-color: #c0a9be;
