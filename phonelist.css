@@ -7,14 +7,14 @@ body {
     height: 98vh;
   }
 
-a{
+.phone-list-side-bar{
   padding-top: 16px;
   padding-bottom: 16px;
   color: #000000;
   font-size: 20px;
   text-decoration: none;
 }
-a:first-of-type{
+.phone-list-side-bar-first{
   margin-top: 50px;
 }
 
@@ -50,9 +50,6 @@ a:first-of-type{
     width: 200px;
     background-color: #c1e5f5;
     gap: 15px;
-}
-a:first-of-type{
-    margin-top: 50px;
 }
 
 .main-content{
@@ -133,6 +130,7 @@ a:first-of-type{
     justify-content: center;
     border-radius: 10px;
     cursor: pointer;
+    text-decoration: none;
   }
 
   .sectionNew:hover {
