@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="phonelist.css">
+    <script src="data.js"></script>
 </head>
 <body>
     <div class="flex-container">
@@ -33,50 +34,60 @@
                         <div class="phone-name-header">Phone</div>
                         <div class="price">Price</div>
                     </div> 
-                    <div class="box-large">
-                        <div class="phoneList">
-                            <div class="phone-name">iPhone 16</div>
-                            <div class="price">35,000</div>
-                            <div class="over-button">
-                                <button>Edit</button>
-                                <button>Buy</button>
-                            </div>
-                        </div>
-                        <div class="phoneList">
-                            <div class="phone-name">iPhone 15</div>
-                            <div class="price">30,000</div>
-                            <div class="over-button">
-                                <button>Edit</button>
-                                <button>Buy</button>
-                            </div>
-                        </div>
 
-                        <div class="phoneList">
-                            <div class="phone-name">iPhone x</div>
-                            <div class="price">9,000</div>
-                            <div class="over-button">
-                                <button>Edit</button>
-                                <button>Buy</button>
-                            </div>
-                        </div><div class="phoneList">
-                            <div class="phone-name">Samsung Galaxy S24</div>
-                            <div class="price">34,000</div>
-                            <div class="over-button">
-                                <button>Edit</button>
-                                <button>Buy</button>
-                            </div>
-                        </div><div class="phoneList">
-                            <div class="phone-name">Samsung Galaxy S23
-                                35000</div>
-                            <div class="price">35,000</div>
-                            <div class="over-button">
-                                <button>Edit</button>
-                                <button>Buy</button>
-                            </div>
-                        </div>
+                    
+                    
+                    <div id="mainTable" class="box-large">
+                        
+                    <!-- here -->
+
+                        <script>
+                            const mainTable = document.getElementById("mainTable");
+                        
+                            // เพิ่มโครงสร้าง HTML ของแต่ละโทรศัพท์ใน mainTable
+                            testDataObj.forEach(function(item) {
+                            // สร้าง phoneList div
+                            const phoneList = document.createElement("div");
+                            phoneList.className = "phoneList";
+                        
+                            // สร้าง phone-name div
+                            const phoneName = document.createElement("div");
+                            phoneName.className = "phone-name";
+                            phoneName.textContent = item.title;
+                        
+                            // สร้าง price div
+                            const price = document.createElement("div");
+                            price.className = "price";
+                            price.textContent = item.price;
+                        
+                            // สร้าง over-button div และปุ่มต่างๆ
+                            const overButton = document.createElement("div");
+                            overButton.className = "over-button";
+                        
+                            const editButton = document.createElement("button");
+                            editButton.textContent = "Edit";
+                        
+                            const buyButton = document.createElement("button");
+                            buyButton.textContent = "Buy";
+                        
+                            // ใส่ปุ่มเข้าไปใน over-button
+                            overButton.appendChild(editButton);
+                            overButton.appendChild(buyButton);
+                        
+                            // ใส่องค์ประกอบทั้งหมดใน phoneList
+                            phoneList.appendChild(phoneName);
+                            phoneList.appendChild(price);
+                            phoneList.appendChild(overButton);
+                        
+                            // ใส่ phoneList ลงใน mainTable
+                            mainTable.appendChild(phoneList);
+                        });
+                        
+                            
+                        </script>
                     </div>
                     
-
+                    
                     
 
 
@@ -95,3 +106,4 @@
     </div>
 </body>
 </html>
+
