@@ -41,50 +41,7 @@
                         
                     <!-- here -->
 
-                        <script>
-                            const mainTable = document.getElementById("mainTable");
                         
-                            // เพิ่มโครงสร้าง HTML ของแต่ละโทรศัพท์ใน mainTable
-                            testDataObj.forEach(function(item) {
-                            // สร้าง phoneList div
-                            const phoneList = document.createElement("div");
-                            phoneList.className = "phoneList";
-                        
-                            // สร้าง phone-name div
-                            const phoneName = document.createElement("div");
-                            phoneName.className = "phone-name";
-                            phoneName.textContent = item.title;
-                        
-                            // สร้าง price div
-                            const price = document.createElement("div");
-                            price.className = "price";
-                            price.textContent = item.price;
-                        
-                            // สร้าง over-button div และปุ่มต่างๆ
-                            const overButton = document.createElement("div");
-                            overButton.className = "over-button";
-                        
-                            const editButton = document.createElement("button");
-                            editButton.textContent = "Edit";
-                        
-                            const buyButton = document.createElement("button");
-                            buyButton.textContent = "Buy";
-                        
-                            // ใส่ปุ่มเข้าไปใน over-button
-                            overButton.appendChild(editButton);
-                            overButton.appendChild(buyButton);
-                        
-                            // ใส่องค์ประกอบทั้งหมดใน phoneList
-                            phoneList.appendChild(phoneName);
-                            phoneList.appendChild(price);
-                            phoneList.appendChild(overButton);
-                        
-                            // ใส่ phoneList ลงใน mainTable
-                            mainTable.appendChild(phoneList);
-                        });
-                        
-                            
-                        </script>
                     </div>
                     
                     
@@ -106,4 +63,47 @@
     </div>
 </body>
 </html>
+<script>
+    const mainTable = document.getElementById("mainTable");
 
+
+    testDataObj.forEach(function(item) {
+
+    const phoneList = document.createElement("div");
+    phoneList.className = "phoneList";
+
+
+    const phoneName = document.createElement("div");
+    phoneName.className = "phone-name";
+    phoneName.textContent = item.title;
+
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = item.price;
+
+
+    const overButton = document.createElement("div");
+    overButton.className = "over-button";
+
+    const editButton = document.createElement("button");
+    editButton.textContent = "Edit";
+
+    const buyButton = document.createElement("button");
+    buyButton.textContent = "Buy";
+
+
+    overButton.appendChild(editButton);
+    overButton.appendChild(buyButton);
+
+    
+    phoneList.appendChild(phoneName);
+    phoneList.appendChild(price);
+    phoneList.appendChild(overButton);
+
+    
+    mainTable.appendChild(phoneList);
+});
+
+    
+</script>
