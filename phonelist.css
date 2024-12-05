@@ -174,7 +174,8 @@ body {
 .over-button{
   display: flex;
 }
-button{
+
+.button-edit{
   color: #9e276e;
   border-radius: 8px;
   border-color: #9e276e;
@@ -183,7 +184,16 @@ button{
   height: 30px;
   margin-right: 10px;
   cursor: pointer;
-
+}
+.button-buy{
+  color: #9e276e;
+  border-radius: 8px;
+  border-color: #9e276e;
+  background-color: #f2cfee;
+  width: 60px;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 button:hover{
   background-color: #c0a9be;

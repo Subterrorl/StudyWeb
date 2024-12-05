@@ -12,7 +12,7 @@
         <div class="head">
             <div class="head-in"></div>
             <div class="head-in2"><b>Moblie Phone Shop</b></div>
-            <div class="head-in3">Buy <span style="color: white;"><b>3</b></span> phone</div> 
+            <div class="head-in3">Buy <span style="color: white;" id="amount"><b>0</b></span> phone</div> 
         </div>
         <div class="main-content">
             <div class="sidebar">
@@ -52,10 +52,7 @@
                         <div class="sectionPhoneList"></div> 
                         <a href="addnewphone.html" class="sectionNew">New</a> 
                     </div> 
-                
-
-
-
+                    
 
                 </div>        
             </div>
@@ -63,47 +60,73 @@
     </div>
 </body>
 </html>
+
 <script>
     const mainTable = document.getElementById("mainTable");
 
 
-    testDataObj.forEach(function(item) {
-
-    const phoneList = document.createElement("div");
-    phoneList.className = "phoneList";
-
-
-    const phoneName = document.createElement("div");
-    phoneName.className = "phone-name";
-    phoneName.textContent = item.title;
+    testDataObj.forEach(function(item) 
+    {
+        const phoneList = document.createElement("div");
+        phoneList.className = "phoneList";
 
 
-    const price = document.createElement("div");
-    price.className = "price";
-    price.textContent = item.price;
+        const phoneName = document.createElement("div");
+        phoneName.className = "phone-name";
+        phoneName.textContent = item.title;
 
 
-    const overButton = document.createElement("div");
-    overButton.className = "over-button";
-
-    const editButton = document.createElement("button");
-    editButton.textContent = "Edit";
-
-    const buyButton = document.createElement("button");
-    buyButton.textContent = "Buy";
+        const price = document.createElement("div");
+        price.className = "price";
+        price.textContent = item.price;
 
 
-    overButton.appendChild(editButton);
-    overButton.appendChild(buyButton);
+        const overButton = document.createElement("div");
+        overButton.className = "over-button";
+
+        const editButton = document.createElement("button");
+        editButton.className = "button-edit"
+        editButton.textContent = "Edit";
+        
+        editButton.addEventListener("click", function() {
+
+            const urlParams = new URLSearchParams({
+                title: item.title,
+                price: item.price
+            }).toString();
+            
+            window.location.href = `addnewphone.html?${urlParams}`;
+        });  
+
+        const buyButton = document.createElement("button");
+        buyButton.className = "button-buy";
+        buyButton.textContent = "Buy";
+        buyButton.id = item._id;
+
+
+        overButton.appendChild(editButton);
+        overButton.appendChild(buyButton);
+
+        phoneList.appendChild(phoneName);
+        phoneList.appendChild(price);
+        phoneList.appendChild(overButton);
+
+        mainTable.appendChild(phoneList);
+
+
+        document.getElementById(item._id).addEventListener("click", function () {
+        amount++;
+        phoneAmount.textContent = amount;
+        });
+    });
+
+
+    let amount = 0;
+
+    const phoneAmount = document.getElementById("amount");
+    phoneAmount.textContent = amount;
+
 
     
-    phoneList.appendChild(phoneName);
-    phoneList.appendChild(price);
-    phoneList.appendChild(overButton);
-
-    
-    mainTable.appendChild(phoneList);
-});
-
-    
+        
 </script>
