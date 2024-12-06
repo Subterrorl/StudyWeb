@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="phonelist.css">
     <link rel="stylesheet" href="ShoppingCart.css">
+    <script src="data.js"></script>
 </head>
 <body>
     <div class="flex-container">
@@ -32,33 +33,28 @@
 
 
 
-                    <div class="box-cala2">
+                    <div class="box-cala2" id="shoppingBox">
+                        
                         <div class="in-box-cala">
-                            <div class="phone-name">iPhone 16</div>
-                            <div class="price">1 x 35,000</div>
+                            <div class="phone-name"><b>Name</b></div>
+                            <div class="price"><b>Quantity</b></div>
                             <div>
-                                <span>=</span>
-                                <span>35,000</span>
-                            </div>
-                        </div>
-                        <div class="in-box-cala">
-                            <div class="phone-name">iPhone 15</div>
-                            <div class="price">2 x 30,000</div>
-                            <div>
-                                <span>=</span>
-                                <span>60,000</span>
+                                
+                                <span><b>Price</b></span>
                             </div>
                         </div> 
+
+                        <!-- script here -->
                     </div>
 
 
                     <div class="box-total">
                         <div class="in-box-cala">
                             <div class="phone-name">Total</div>
-                            <div class="price">3 phones</div>
+                            <div class="price" id="totalPhone">3 phones</div>
                             <div>
                                 <span>&nbsp;&nbsp;</span>
-                                <span style="color: #3b7d38;"><b>95,000</b></span>
+                                <span style="color: #3b7d38;"><b id="totalPhonePrice">95,000</b></span>
                             </div>
                         </div>
                     </div> 
@@ -79,3 +75,59 @@
     </div>
 </body>
 </html>
+
+<script>
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let totalQuantity = 0;
+    let totalPrice = 0;
+
+    cartItems.forEach(function(item) 
+    {
+        totalQuantity += item.quantity;
+        totalPrice += item.price;
+
+        const shoppingBox = document.getElementById("shoppingBox"); 
+            // สร้างกล่องหลัก
+        const inBoxCala = document.createElement('div');
+        inBoxCala.className = 'in-box-cala';
+
+        // สร้างชื่อโทรศัพท์
+        const phoneName = document.createElement('div');
+        phoneName.className = 'phone-name';
+        phoneName.textContent = item.title;
+
+        // สร้างราคาหลัก
+        const price = document.createElement('div');
+        price.className = 'price';
+        price.textContent = item.quantity + " x " + item.price;
+
+        // สร้างส่วนที่แสดงผลรวมราคา
+        const totalDiv = document.createElement('div');
+
+        const equalsSpan = document.createElement('span');
+        equalsSpan.textContent = '= ';
+
+        const totalSpan = document.createElement('span');
+        totalSpan.textContent = item.quantity * item.price;
+
+        // เพิ่ม span ทั้งสองเข้าไปใน totalDiv
+        totalDiv.appendChild(equalsSpan);
+        totalDiv.appendChild(totalSpan);
+
+        // เพิ่มองค์ประกอบทั้งหมดเข้าไปใน inBoxCala
+        inBoxCala.appendChild(phoneName);
+        inBoxCala.appendChild(price);
+        inBoxCala.appendChild(totalDiv);
+
+        shoppingBox.appendChild(inBoxCala); 
+    });
+    
+
+    const totalPhoneQuantity = document.getElementById("totalPhone");
+    totalPhoneQuantity.textContent = totalQuantity + " phones";
+
+    const totalPhonePrice = document.getElementById("totalPhonePrice");
+    totalPhonePrice.textContent = totalPrice;
+
+</script>
