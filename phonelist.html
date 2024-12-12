@@ -6,6 +6,15 @@
     <title>Document</title>
     <link rel="stylesheet" href="phonelist.css">
     <script src="data.js"></script>
+    <script src="utils.js"></script>
+    <script src="initPage.js"></script>
+    <script src="createPhoneName.js"></script>
+    <script>
+        // เรียก initPage เมื่อ DOM โหลดเสร็จ
+        document.addEventListener("DOMContentLoaded", function () {
+            initPage(testDataObj); // ใช้ testDataObj ที่ประกาศใน data.js
+        });
+</script>
 </head>
 <body>
     <div class="flex-container">
@@ -59,117 +68,3 @@
     </div>
 </body>
 </html>
-
-<script>
-    const mainTable = document.getElementById("mainTable");
-
-
-    testDataObj.forEach(function(item) 
-    {
-        const phoneList = document.createElement("div");
-        phoneList.className = "phoneList";
-
-
-        const phoneName = document.createElement("div");
-        phoneName.className = "phone-name";
-        phoneName.textContent = item.title;
-
-
-        const price = document.createElement("div");
-        price.className = "price";
-        price.textContent = item.price;
-
-
-        const overButton = document.createElement("div");
-        overButton.className = "over-button";
-
-        //edit
-        const editButton = document.createElement("button");
-        editButton.className = "button-edit"
-        editButton.textContent = "Edit";
-        
-        editButton.addEventListener("click", function() 
-        {
-            const urlParams = new URLSearchParams({
-                title: item.title,
-                price: item.price
-            }).toString();
-            
-            window.location.href = `addnewphone.html?${urlParams}`;
-        });  
-
-        //buy
-        const buyButton = document.createElement("button");
-        buyButton.className = "button-buy";
-        buyButton.textContent = "Buy";
-        buyButton.id = item._id;
-
-        buyButton.addEventListener("click", function () 
-        {
-            // ดึงข้อมูลตะกร้าสินค้าจาก Local Storage
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-            // ค้นหาว่าสินค้านี้อยู่ในตะกร้าแล้วหรือไม่
-            const existingItem = cart.find(function(cartItem) 
-            {
-                return cartItem._id === item._id;
-            });
-
-            if (existingItem) {
-            // ถ้ามีอยู่แล้ว เพิ่มจำนวนสินค้า
-            existingItem.quantity++;
-            } else {
-            // ถ้ายังไม่มีในตะกร้า เพิ่มรายการใหม่
-            cart.push({ _id: item._id, title: item.title, price: item.price, quantity: 1 });
-            }
-
-            // บันทึกข้อมูลกลับไปใน Local Storage
-            localStorage.setItem("cart", JSON.stringify(cart));
-
-            // ทดสอบแสดงผลในคอนโซล
-            console.log("Cart updated:", cart);
-        });
-
-
-        //end
-        overButton.appendChild(editButton);
-        overButton.appendChild(buyButton);
-
-        phoneList.appendChild(phoneName);
-        phoneList.appendChild(price);
-        phoneList.appendChild(overButton);
-
-        mainTable.appendChild(phoneList);
-
-
-        document.getElementById(item._id).addEventListener("click", function ()
-        {
-            amount++;
-            phoneAmount.textContent = amount;
-            localStorage.setItem("amount", amount);
-        });
-    });
-
-    let amount = localStorage.getItem("amount") ? parseInt(localStorage.getItem("amount")) : 0;
-    
-    const phoneAmount = document.getElementById("amount");
-    phoneAmount.textContent = amount;
-
-       
-
-    function clearCart() 
-    {
-        // ลบข้อมูลตะกร้าสินค้าใน Local Storage
-        localStorage.removeItem("cart");
-
-        // แสดงผลลัพธ์การลบในคอนโซล
-        console.log("Cart cleared");
-
-        amount = 0;
-        phoneAmount.textContent = amount;
-    }
-
-    const clearCartButton = document.getElementById("ClearCartBox");
-    clearCartButton.addEventListener("click", clearCart);
-
-</script>
